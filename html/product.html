@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+
+
+
+    <title>Oriphoto-Appareil photo vintage</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>Oriphoto</h1>
+            <ul>
+                <a href="/index.html">
+                    <li>Accueil</li>
+                </a>
+                <a href="/html/order.html">
+                    <li>Commande</li>
+                </a>
+                <a href="/html/basket.html">
+                    <li>Panier</li>
+                </a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+
+        <h2> Votre Appareil photo vintage préféré :</h2>
+        <section class="product-container">
+            <div class="img-product">
+                <img src="http://localhost:3000/images/vcam_3.jpg">
+            </div>
+            <div class="description">
+                <h3 class="name"></h3>
+                <p class="ref">Référence :</p>
+                <p class="text">Caractéristique : </p>
+                <p class="price">Prix : €</p>
+            </div>
+            <div class="choice-optical">
+                <form method="post" action="">
+                    <p class="optical-content">
+                        <label class="text-optical" for="optical">Choisissez votre optique : </label><br />
+                        <select name="optical" id="optical">
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                    </p>
+                </form>
+                <button type="button" class="add-to-cart">Ajouter au panier</button>
+            </div>
+
+
+        </section>
+
+    </main>
+    <footer>
+        <ul>
+            <li>A propos</li>
+            <li>Livraison</li>
+            <li>Suivez nous</li>
+        </ul>
+    </footer>
+
+
+    <script src="/js/camera.js"></script>
+    <script src="/js/product.js"></script>
+</body>
+
+</html>
