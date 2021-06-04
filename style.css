@@ -39,6 +39,7 @@ li {
 }
 a {
   text-decoration: none;
+ 
 }
 /*////////////////////////////////HEADER////////////////////////////////////////*/
 nav {
@@ -185,6 +186,41 @@ footer li {
  width: 100px;
  border-radius: 10px;
 }
+/*//////////////////////////////PANIER///////////////////////////*/
+.basket{
+  color: #fff;
+  border: 1px solid #fff;
+  width: 80%;
+  text-align: center;
+  margin: auto;
+}
+table {
+  width: 100%;
+}
+table tr{
+width: 100%;
+ 
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+}
+th{
+  width: 100%;
+  margin-top: 10px;
+}
+tbody{
+  width: 100%;
+  height: 60%;
+}
+.basket p {
+  margin-top: 50px;
+}
+.basket button {
+  margin: 10px;
+}
+
+
+
 /*///////////////////////////MEDIA QUERIES/////////////////////////////*/
 @media (min-width: 768px) {
   .container {
