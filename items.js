@@ -22,6 +22,8 @@ fetch("http://localhost:3000/api/cameras") //requête de type Get au serveur loc
                           <a href="./html/product.html?id=${camera._id}"><button class="btn-items">En savoir plus</button></a>
                      </div>
                      </div>`;
+
+      
     }
   })
   .catch(function (error) {

@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
-
-
-
-    <title>Oriphoto-Appareil photo vintage</title>
+    <title>Document</title>
 </head>
-
 <body>
     <header>
         <nav>
@@ -29,27 +24,32 @@
             </ul>
         </nav>
     </header>
-    <main>
+    <h2> Votre panier</h2>
+    
 
 
-        <h2> Votre Appareil photo vintage préféré :</h2>
-        <section class="product-container">
+    <section class="basket">
+        <table class="table">
+            <thead>
+                <tr><th>Article</th><th>Optique</th><th>Quantité</th><th>Prix</th></tr>
+            </thead>
+            <tbody id="cart-tablebody"></tbody>
 
-        </section>
-      
-    </main>
-    <footer>
-        <ul>
-            <li>A propos</li>
-            <li>Livraison</li>
-            <li>Suivez nous</li>
-        </ul>
-    </footer>
+            <tr>
+                <th class="article">ffffff</th>
+                <th class="optique">gggggg</th>
+                <th class="quantie">hhhhhh</th>
+                <th class="prix">hhhhhh</th>
 
-
+            </tr>
+        </table>
+        
+        <p>Sous total : <span class="subtotal"></span>€</p>
+        
+        <button id="confirm-command">Passer la commande</button>
+    </section>
+    
     <script src="/js/camera.js"></script>
     <script src="/js/product.js"></script>
-   
 </body>
-
 </html>
