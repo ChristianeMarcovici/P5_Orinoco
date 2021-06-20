@@ -22,6 +22,7 @@ function productPage(product) {
                        </select>
                        </p>     
                       </form> 
+                  
                       <button type="button" class="add-to-cart">Ajouter au panier</button>
                       </div>`;
 }
@@ -35,24 +36,36 @@ function lensesOptionContent(lense) {
   option.textContent = lense;
   select.appendChild(option);
 }
+///////////////////////////////choix optique//////////////////////////////////////////////
+const lenseOption = []; //stock l'optique selectionné
 
 //////////////////////////////////////////PANIER////////////////////////////////////////////
 
 function btnBasket(cameraSelected) {
   const btn = document.querySelector(".add-to-cart");
+  lenseSelected = document.querySelector("select");
+
   btn.addEventListener("click", function () {
     let basketContent = localStorage.getItem("basket14");
     if (basketContent) {
       basketContent = JSON.parse(basketContent);
+      let optSelect =
+        lenseSelected.options[lenseSelected.selectedIndex].value;
+      lenseOption.push(optSelect);
+      console.log(optSelect)
+     
     } else {
       basketContent = [];
+      let optNoSelect =
+      lenseSelected.options[lenseSelected.selectedIndex].value;
+    lenseOption.push(optNoSelect);
+     
     }
     const basketCamera = {
       id: cameraSelected._id,
       price: cameraSelected.price / 100,
       name: cameraSelected.name,
       optical: lenseOption,
-      quantite: 1,
     };
     basketContent.push(basketCamera);
     localStorage.setItem("basket14", JSON.stringify(basketContent));
@@ -61,9 +74,9 @@ function btnBasket(cameraSelected) {
 }
 
 ///////////////////////////////SEARCH URL//////////////////////////////////////////////
-const searchUrl = document.location.search;
+const searchUrl = document.location.search; //requête
 console.log(searchUrl);
-const urlParams = new URLSearchParams(searchUrl);
+const urlParams = new URLSearchParams(searchUrl); //extrait les Id
 const cameraId = urlParams.get("id");
 
 ///////////////////////////////////////FETCH///////////////////////////////////////////
@@ -77,7 +90,7 @@ fetch(`http://localhost:3000/api/cameras/${cameraId}`) //requête vers Id
   .then(function (jsonCamera) {
     let product = new Camera(jsonCamera);
     console.log(product);
-    productPage(product); //appel de la fonction product page
+    productPage(product); //appel de la fonction product page, affiche le produit seletioné
 
     ////////////////////////////boucle pour récuperer les optiques////////////////////////
     for (let i = 0; i < jsonCamera.lenses.length; i = i + 1) {
@@ -87,18 +100,10 @@ fetch(`http://localhost:3000/api/cameras/${cameraId}`) //requête vers Id
       console.log(lense);
     }
     ////////////////////////choix optique/////////////////////////////////////////////
-    const select = document.querySelector("select");
-    let lenseSelected = select.addEventListener(
-      "change",
-      function (lenseSelected) {
-        lenseSelected = this.value;
-        console.log(lenseSelected);
-        lenseOption.push(lenseSelected);
-      }
-    );
+
+    ///////////////////////////Quantité/////////////////////////////////////////////
 
     /////////////////////////////appel la fonction panier////////////////////////////////////////////////////
-
     btnBasket(product);
   })
 

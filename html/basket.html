@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="/style.css">
     <title>Document</title>
 </head>
+
 <body>
     <header>
         <nav>
@@ -25,31 +27,30 @@
         </nav>
     </header>
     <h2> Votre panier</h2>
-    
 
 
-    <section class="basket">
+
+    <section id="basket">
         <table class="table">
             <thead>
-                <tr><th>Article</th><th>Optique</th><th>Quantité</th><th>Prix</th></tr>
+                <tr>
+                    <th>Article</th>
+                    <th>Optique</th>
+                    <th>Quantité</th>
+                    <th>Prix</th>
+                </tr>
             </thead>
-            <tbody id="cart-tablebody"></tbody>
+            <tbody id="cart-tbody"></tbody>
 
-            <tr>
-                <th class="article">ffffff</th>
-                <th class="optique">gggggg</th>
-                <th class="quantie">hhhhhh</th>
-                <th class="prix">hhhhhh</th>
-
-            </tr>
+            
         </table>
-        
+
         <p>Sous total : <span class="subtotal"></span>€</p>
-        
+
         <button id="confirm-command">Passer la commande</button>
     </section>
-    
-    <script src="/js/camera.js"></script>
-    <script src="/js/product.js"></script>
+ 
+    <script src="/js/basket.js"></script>
 </body>
+
 </html>

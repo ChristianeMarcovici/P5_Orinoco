@@ -218,10 +218,16 @@ tbody{
 .basket button {
   margin: 10px;
 }
+/*/////////////////////////page panier/////////////////////////////*/
+#btnMoins, #btnPlus {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  margin: 5px;
+}
 
 
-
-/*///////////////////////////MEDIA QUERIES/////////////////////////////*/
+/*//////////////////////////MEDIA QUERIES/////////////////////////////*/
 @media (min-width: 768px) {
   .container {
     flex-flow: row wrap;
