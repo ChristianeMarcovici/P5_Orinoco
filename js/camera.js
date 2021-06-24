@@ -4,7 +4,11 @@ class Camera {
   }
 }
 //Object.assign = lenses ; _id ; name ; price ; description ; imageUrl.
-let lenseSelected ;
 
 
+class Article {
+  constructor(jsonCart){
+    jsonCart && Object.assign(this, jsonCart)
+  }
+}
 

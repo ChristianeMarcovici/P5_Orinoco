@@ -49,17 +49,15 @@ function btnBasket(cameraSelected) {
     let basketContent = localStorage.getItem("basket14");
     if (basketContent) {
       basketContent = JSON.parse(basketContent);
-      let optSelect =
-        lenseSelected.options[lenseSelected.selectedIndex].value;
+      let optSelect = lenseSelected.options[lenseSelected.selectedIndex].value;
       lenseOption.push(optSelect);
-      console.log(optSelect)
-     
+      console.log("if", optSelect);
     } else {
       basketContent = [];
       let optNoSelect =
-      lenseSelected.options[lenseSelected.selectedIndex].value;
-    lenseOption.push(optNoSelect);
-     
+        lenseSelected.options[lenseSelected.selectedIndex].value;
+      lenseOption.push(optNoSelect);
+      console.log("else", basketContent);
     }
     const basketCamera = {
       id: cameraSelected._id,
@@ -69,7 +67,7 @@ function btnBasket(cameraSelected) {
     };
     basketContent.push(basketCamera);
     localStorage.setItem("basket14", JSON.stringify(basketContent));
-    console.log(basketCamera);
+    console.log(basketContent);
   });
 }
 
