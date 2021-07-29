@@ -1,14 +1,18 @@
 class Camera {
-  constructor(jsonCamera) {
-    jsonCamera && Object.assign(this, jsonCamera);
+  constructor(camera) {
+    camera && Object.assign(this, camera);
   }
 }
 //Object.assign = lenses ; _id ; name ; price ; description ; imageUrl.
-
-
-class Article {
-  constructor(jsonCart){
-    jsonCart && Object.assign(this, jsonCart)
+class Lense {
+  constructor(lenses) {
+    lenses && Object.assign(this, lenses)
+   
   }
 }
 
+class Article {
+  constructor(jsonCart) {
+    jsonCart && Object.assign(this, jsonCart);
+  }
+}
