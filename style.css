@@ -237,7 +237,12 @@ tbody{
   color: rgb(223, 173, 119);
 }
 #confirm-command{
-width : 100%;
+width : 30%;
+margin: auto;
+display: flex;
+justify-content: center;
+vertical-align: middle;
+border: 2px solid rgb(223, 173, 119);
 
 }
 .trash {
@@ -246,7 +251,7 @@ width : 100%;
   font-size: 12px;
   margin: 0px;
   padding: 0px;
-  vertical-align: middle;
+ 
 }
 /*//////////////////////////MEDIA QUERIES/////////////////////////////*/
 @media (min-width: 768px) {

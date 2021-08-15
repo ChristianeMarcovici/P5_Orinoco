@@ -8,7 +8,7 @@ function productPage(product) {
                       </div>
                       <div class="description">
                           <h3 class="name">${product.name}</h3>
-                          <p class="ref">Référence : ${product._id}</p>
+                          <p class="ref">Référence : ${product.id}</p>
                           <p class="text">Caractéristique : ${product.description}</p>
                           <p class="price">Prix : ${product.price} €</p>
                       </div>
@@ -21,7 +21,7 @@ function productPage(product) {
                        </p>     
                       </form> 
                   
-                      <button type="button" class="add-to-cart">Ajouter au panier</button>
+                      <button type="button" class="add-to-cart" data-id=${product.id}>Ajouter au panier</button>
                       </div>`;
 }
 ///////////////////////////CONTAINER OPTIQUE///////////////////////////////////////////////
@@ -33,54 +33,88 @@ function lensesOptionContent(lense) {
   option.textContent = lense;
   select.appendChild(option);
 }
+////////////////////////////////VARIABLES POUR PANIER//////////////////////////////////////
 
 //////////////////////////////////////////PANIER////////////////////////////////////////////
 function btnBasket(cameraSelected) {
   const btn = document.querySelector(".add-to-cart");
-  const lenseSelected = document.querySelector("select");
-  btn.addEventListener("click", function () {
-    let basketContent = JSON.parse(localStorage.getItem("cart")) || [];
-    
 
-    const basketCamera = {
-      id: cameraSelected._id,
-      price: cameraSelected.price,
-      name: cameraSelected.name,
-      optical: lenseSelected.value,
-      quantity: 1
-    };
+  btn.addEventListener("click", function () {
+    const lenseSelected = document.querySelector("select").value;
+    console.log(lenseSelected);
+
+    let camerasInCart = [];
+    let: otherCamera = true;
+
+    
+    const basketCamera = new Basket(
+      cameraSelected.id,
+      cameraSelected.name,
+      lenseSelected,
+      quantity = 1,
+      cameraSelected.price
+    );
+    console.log(basketCamera);
    
-    basketContent.push(basketCamera);
-    localStorage.setItem("cart", JSON.stringify(basketContent));
-    console.log(basketContent);
+
+    if (localStorage.getItem("cart") === null) {//si panier vide
+  
+      camerasInCart.push(basketCamera);//Je  pousse la caméra dans le panier
+      localStorage.setItem("cart", JSON.stringify(camerasInCart));//et je stock en string(le localstorage n'accepte que du string)
+    
+    } else {
+      camerasInCart = JSON.parse(localStorage.getItem("cart"));//sinon je récupère les articles
+    
+      camerasInCart.forEach(function (cameraInCart) {// pour chaque article j'incremente la quantité si optique identique
+        
+          if (   lenseSelected ===  cameraInCart.lense){
+    
+          cameraInCart.quantity++;
+          otherCamera = false;
+          
+          }
+              
+      });
+      if (otherCamera)//si le panier n'est pas vide et c'est un autre camera
+
+      camerasInCart.push(basketCamera);
+      localStorage.setItem("cart", JSON.stringify(camerasInCart));
+     
+    }
   });
+
+ 
 }
 //////////////////////////////BOUCLE cameraId/////////////////////////////////////
 async function cameraById(cameraId) {
-  cameraId = await getApiCameraById();
-  let product = new Camera(cameraId);
- 
-  console.log(product);
- 
+  let jsonCamera = await getApiCameraById(cameraId);
+  let product = new Camera(
+    jsonCamera._id,
+    jsonCamera.name,
+    jsonCamera.price,
+    jsonCamera.description,
+    jsonCamera.imageUrl,
+    jsonCamera.lenses
+  );
 
-  productPage(product);
- 
 
-//*****************boucle pour récuperer les optiques************************//
-  for (let lense of cameraId.lenses) {
-   
-    lensesOptionContent(lense); //affiche les optiques en option
+  productPage(product); //container html
+
+  //*****************boucle pour récuperer les optiques************************//
+  for (let lense of product.lenses) {
+    lensesOptionContent(lense); //container html option  optiques
     console.log(lense);
+    
   }
 
-//****************************PANIER****************************************//  
+  //****************************PANIER****************************************//
   btnBasket(product);
+ 
 }
 
 ///////////////////////////////////////FETCH///////////////////////////////////////////
-console.log(cameraId);
-getApiCameraById();
 
+getApiCameraById(id);
+console.log(id);
 //////////////////////////////////////PAGE CAMERA////////////////////////////////////////////
-cameraById(cameraId);
-
+cameraById(id);

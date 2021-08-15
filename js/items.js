@@ -13,8 +13,9 @@ async function showCameras(camera) {
 ///////////////////////Boucle Cameras/////////////////////////////////////
 async function getCameras(cameras) {
   cameras = await getApiCamera();
+  console.log(cameras);
   let camera = new Camera(cameras);
-  console.log(camera);
+ 
   for (camera of cameras) {
     showCameras(camera); //affichage
   }

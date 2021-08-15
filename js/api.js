@@ -1,23 +1,18 @@
-//////////////////////////////////////////////URL LOCALHOST///////////////////////////////////////////
-let url = new URL("http://localhost:3000/api/cameras/");
-
-//////////////////////////////////////////////SEARCH URL/////////////////////////////////////////////
-const searchUrl = document.location.search; //requête
-const cameraId = new URLSearchParams(searchUrl).get("id"); //extrait les Id
-
-///////////////////////////////////////////////NEW URL///////////////////////////////////////////////
-let newUrl = new URL(`${cameraId}`, url);
-
 ///////////////////////////////////////////REQUETE GET CAMERAS///////////////////////////////////////
 async function getApiCamera() {
-  let resp = await fetch(url);
+  let resp = await fetch("http://localhost:3000/api/cameras/");
   let response = await resp.json();
   return response;
 }
 
+//////////////////////////////////////////////SEARCH URL/////////////////////////////////////////////
+const id = (new URL(document.location)).searchParams.get("id");
+
+
 /////////////////////////////////////////REQUETE GET CAMERA BY ID//////////////////////////////////
-async function getApiCameraById() {
-  let resp = await fetch(newUrl);
+async function getApiCameraById(){
+  let resp = await fetch(`http://localhost:3000/api/cameras/${id}`);
   let response = await resp.json();
   return response;
 }
+
