@@ -12,12 +12,14 @@ class Camera {
 //Object.assign = lenses ; _id ; name ; price ; description ; imageUrl.
 
 class Basket {
-  constructor(id, name, lense, quantity, price){
+  constructor(id, name, lense, quantity, unitPrice, subTotal){
     this.id = id;
     this.name = name;
     this.lense = lense;
     this.quantity = quantity ;
-    this.price = price;
+    this.unitPrice = unitPrice;
+    this.subTotal = subTotal;
    
   }
 }
+let unitCamera = [];

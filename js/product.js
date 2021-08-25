@@ -45,6 +45,7 @@ function btnBasket(cameraSelected) {
 
     let camerasInCart = [];
     let: otherCamera = true;
+  
 
     
     const basketCamera = new Basket(
@@ -52,10 +53,12 @@ function btnBasket(cameraSelected) {
       cameraSelected.name,
       lenseSelected,
       quantity = 1,
-      cameraSelected.price
+      cameraSelected.price,
+      cameraSelected.subTotal = cameraSelected.price
+   
     );
     console.log(basketCamera);
-   
+   unitCamera.push(basketCamera)
 
     if (localStorage.getItem("cart") === null) {//si panier vide
   
@@ -70,10 +73,14 @@ function btnBasket(cameraSelected) {
           if (   lenseSelected ===  cameraInCart.lense){
     
           cameraInCart.quantity++;
+          cameraInCart.subTotal = cameraSelected.price * cameraInCart.quantity;
+          //subTotal.push(cameraInCart.subTotal)
           otherCamera = false;
           
           }
-              
+         
+          
+          
       });
       if (otherCamera)//si le panier n'est pas vide et c'est un autre camera
 
@@ -96,7 +103,7 @@ async function cameraById(cameraId) {
     jsonCamera.imageUrl,
     jsonCamera.lenses
   );
-
+unitCamera.push(product)
 
   productPage(product); //container html
 
