@@ -22,4 +22,25 @@ class Basket {
    
   }
 }
-let unitCamera = [];
+
+
+class Form {
+  constructor(){
+    this.lastName = document.querySelector("#lastName").value,
+    this.firstName = document.querySelector("#firstName").value,
+    this.address = document.querySelector("#address").value,
+    this.city =  document.querySelector("#city").value,
+    this.postalCode =  document.querySelector("#postalCode").value,
+    this.email = document.querySelector("#email").value
+  }
+}
+class Contact {
+  constructor(firstName, lastName, address, city, email){
+    let formStorage = JSON.parse(localStorage.getItem("form"));
+    this.firstName = formStorage.firstName,
+    this.lastName = formStorage.lastName,
+    this.address = formStorage.address,
+    this.city = formStorage.city
+    this.email = formStorage.email
+  }
+}

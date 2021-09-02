@@ -58,7 +58,7 @@ function btnBasket(cameraSelected) {
    
     );
     console.log(basketCamera);
-   unitCamera.push(basketCamera)
+  
 
     if (localStorage.getItem("cart") === null) {//si panier vide
   
@@ -103,7 +103,7 @@ async function cameraById(cameraId) {
     jsonCamera.imageUrl,
     jsonCamera.lenses
   );
-unitCamera.push(product)
+
 
   productPage(product); //container html
 

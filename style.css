@@ -207,6 +207,7 @@ width: 100%;
 th{
   width: 100%;
   margin-top: 10px;
+  font-size: 1.2em;
 }
 thead{
   font-size: 1.1em;
@@ -214,10 +215,13 @@ thead{
 tbody{
   width: 100%;
   height: 60%;
-  font-size: 0.9em;
+ 
 }
-.basket p {
-  margin-top: 50px;
+#basket  p{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 1.2em;
 }
 
 #btnMoins, #btnPlus {
@@ -237,15 +241,7 @@ tbody{
 #total{
   color: rgb(223, 173, 119);
 }
-#confirm-command{
-width : 30%;
-margin: auto;
-display: flex;
-justify-content: center;
-vertical-align: middle;
-border: 2px solid rgb(223, 173, 119);
 
-}
 .trash {
   width: 25px;
   height: 22px;
@@ -254,6 +250,58 @@ border: 2px solid rgb(223, 173, 119);
   padding: 0px;
   
  
+}
+/*/////////////////////////////formulaire/////////////////////////////////*/
+#form-contact {
+ width: 80%;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column ;
+  align-items: center;
+
+}
+#form-contact form {
+  width: 100%;
+  padding: 10px;
+display: flex;
+ flex-direction: column ;
+border: 2px solid rgb(223, 173, 119);
+ 
+}
+#form-contact p{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+ 
+}
+#form-contact input, textarea {
+  
+  width: 80%;
+}
+#form-contact label {
+  width: 100px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+#confirm-command{
+  width : 60%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  border: 2px solid rgb(223, 173, 119);
+  
+  }
+small{
+  display: flex;
+ width: 100%;
+ justify-content: center;
+color : red;
+}
+#formNoValid {
+  width: 200px;
+  margin: 20px auto;
+  font-size: 1.3em;
+  color : red;  
 }
 /*//////////////////////////MEDIA QUERIES/////////////////////////////*/
 @media (min-width: 768px) {
