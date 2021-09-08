@@ -3,11 +3,13 @@
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
   color: #fff;
   background-color: #000;
   font-family: "Nanum Myeongjo", serif;
   font-weight: 700;
 }
+
 h1,
 h2 {
   font-size: 2em;
@@ -24,7 +26,7 @@ h3 {
   display: flex;
   justify-content: space-between;
 }
-p{
+p {
   font-size: 1.1rem;
 }
 ul {
@@ -39,7 +41,6 @@ li {
 }
 a {
   text-decoration: none;
- 
 }
 /*////////////////////////////////HEADER////////////////////////////////////////*/
 nav {
@@ -54,7 +55,8 @@ nav {
 /*/////////////////////////////////////HEADER/END//////////////////////////////////*/
 
 /*//////////////////////SECTION CONTAINER/INDEX////////////////*/
-.container, .product-container {
+.container,
+.product-container {
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -110,9 +112,9 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   background-color: rgb(223, 173, 119);
-  margin-top: 20px;
+  width: 100%;
+  margin-bottom: 0px;
 }
 footer li {
   color: #000;
@@ -125,7 +127,6 @@ footer li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 .img-product {
   max-width: 600px;
@@ -145,92 +146,87 @@ footer li {
 .img-product img {
   width: 100%;
 }
-.name{
- display: flex;
- justify-content: center;
- font-size: 2rem;
+.name {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
 }
-.ref{
+.ref {
   font-size: 0.8rem;
 }
-.text{
+.text {
   margin-top: -5px;
 }
-.price{
-  color:rgb(223, 173, 119);
+.price {
+  color: rgb(223, 173, 119);
   font-weight: 800;
 }
-.choice-optical{
-  display :flex;
+.choice-optical {
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 90%;
-  
 }
-.optical-content{
-  display :flex;
+.optical-content {
+  display: flex;
   align-items: center;
   margin: 20px;
 }
-.text-optical{
+.text-optical {
   margin-right: 10px;
 }
-#optical{
-  width: 100PX;
+#optical {
+  width: 100px;
   height: 30px;
   border-radius: 5px;
 }
-.add-to-cart{
- 
+.add-to-cart {
   background-color: rgb(223, 173, 119);
- width: 100px;
- border-radius: 10px;
+  width: 100px;
+  border-radius: 10px;
 }
 /*//////////////////////////////PANIER///////////////////////////*/
-.basket{
-  color: #fff;
-  border: 1px solid #fff;
-
-}
-table {
+#basket {
   width: 95%;
   margin: auto;
+  color: #fff;
+  border: 1px solid #fff;
 }
-table tr{
-width: 100%;
- 
+table {
+  width: 100%;
+  margin: auto;
+}
+table tr {
+  width: 100%;
+
   display: flex;
   flex-direction: row;
   align-items: baseline;
-  
 }
-th{
+th {
   width: 100%;
   margin-top: 10px;
   font-size: 1.2em;
 }
-thead{
-  font-size: 1.1em;
+thead {
+  font-size: 1em;
 }
-tbody{
+tbody {
   width: 100%;
   height: 60%;
- 
 }
-#basket  p{
+#basket p {
   width: 100%;
   display: flex;
   justify-content: center;
   font-size: 1.2em;
 }
 
-#btnMoins, #btnPlus {
- 
+#btnMoins,
+#btnPlus {
   font-size: 10px;
   font-weight: bold;
   margin: 3px;
- 
- 
 }
 #contain-total {
   width: 50%;
@@ -238,7 +234,7 @@ tbody{
   vertical-align: middle;
   color: rgb(223, 173, 119);
 }
-#total{
+#total {
   color: rgb(223, 173, 119);
 }
 
@@ -248,34 +244,29 @@ tbody{
   font-size: 12px;
   margin: 0px;
   padding: 0px;
-  
- 
 }
 /*/////////////////////////////formulaire/////////////////////////////////*/
 #form-contact {
- width: 80%;
+  width: 80%;
   margin: 50px auto;
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   align-items: center;
-
 }
 #form-contact form {
   width: 100%;
   padding: 10px;
-display: flex;
- flex-direction: column ;
-border: 2px solid rgb(223, 173, 119);
- 
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgb(223, 173, 119);
 }
-#form-contact p{
+#form-contact p {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
- 
 }
-#form-contact input, textarea {
-  
+#form-contact input,
+textarea {
   width: 80%;
 }
 #form-contact label {
@@ -283,26 +274,49 @@ border: 2px solid rgb(223, 173, 119);
   display: flex;
   flex-flow: row nowrap;
 }
-#confirm-command{
-  width : 60%;
+#confirm-command {
+  width: 60%;
   margin: auto;
   display: flex;
   justify-content: center;
   border: 2px solid rgb(223, 173, 119);
-  
-  }
-small{
+}
+small {
   display: flex;
- width: 100%;
- justify-content: center;
-color : red;
+  width: 100%;
+  justify-content: center;
+  color: red;
 }
 #formNoValid {
   width: 200px;
   margin: 20px auto;
   font-size: 1.3em;
-  color : red;  
+  color: red;
 }
+
+/*////////////////////order////////////////////////////////////////*/
+#order {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  color: silver;
+}
+#order h3 {
+  font-size: 1.5em;
+}
+#order p {
+  text-align: center;
+}
+#orderFirstName,
+#orderLastName,
+#orderPrice,
+#orderId {
+  color: rgb(223, 173, 119);
+}
+
 /*//////////////////////////MEDIA QUERIES/////////////////////////////*/
 @media (min-width: 768px) {
   .container {

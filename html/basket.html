@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Panier</title>
 </head>
 
 <body>
+
     <header>
         <nav>
             <h1>Oriphoto</h1>
@@ -19,9 +20,7 @@
                 <a href="/index.html">
                     <li>Accueil</li>
                 </a>
-                <a href="/html/order.html">
-                    <li>Commande</li>
-                </a>
+
                 <a href="/html/basket.html">
                     <li>Panier</li>
                 </a>
@@ -31,41 +30,41 @@
     <h2 id="basket-contain"> Votre panier</h2>
 
 
+    <main>
+        <section id="basket">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Article</th>
+                        <th>Optique</th>
+                        <th>Quantité</th>
+                        <th>Prix</th>
 
-    <section id="basket">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Article</th>
-                    <th>Optique</th>
-                    <th>Quantité</th>
-                    <th>Prix</th>
-
-                </tr>
-            </thead>
-            <tbody id="cart-tbody"></tbody>
-
-
-        </table>
-
-        <p id="contain-total">Total : <span id="total"></span>€</p>
-    </section>
-
-    <section id="form-contact">
+                    </tr>
+                </thead>
+                <tbody id="cart-tbody"></tbody>
 
 
+            </table>
+
+            <p id="contain-total">Total : <span id="total"></span>€</p>
+        </section>
+
+        <section id="form-contact">
 
 
-    </section>
-    <footer>
-        <ul>
-            <li>A propos</li>
-            <li>Livraison</li>
-            <li>Suivez nous</li>
-        </ul>
-    </footer>
 
 
+        </section>
+        <footer>
+            <ul>
+                <li>A propos</li>
+                <li>Livraison</li>
+                <li>Suivez nous</li>
+            </ul>
+        </footer>
+
+    </main>
     <script src="/js/camera.js"></script>
     <script src="/js/api.js"></script>
     <script src="/js/basket.js"></script>

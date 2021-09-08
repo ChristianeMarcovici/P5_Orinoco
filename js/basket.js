@@ -1,4 +1,5 @@
 cart = JSON.parse(localStorage.getItem("cart"));
+formStorage = JSON.parse(localStorage.getItem("form"));
 let articleSelected = []; //liste articles
 let totalPrice = [];
 console.log(articleSelected);
@@ -29,7 +30,7 @@ function basketContainer(articleSelected) {
   selectQty.setAttribute(
     "data-id",
     articleSelected.name + articleSelected.lense
-  );
+  ); //réf id caméra par name et optique
   thQty.appendChild(selectQty);
 
   let optCart = document.createElement("option");
@@ -84,7 +85,7 @@ function removeProduct(cart) {
           //console.log(cart);
 
           table.removeChild(btn.parentElement); //supprime le container
-          window.location.href = "basket.html";
+          window.location.href = "basket.html"; //met à jour le panier
         }
       }
     })
@@ -187,7 +188,7 @@ function formContainer() {
       <input type="email" id="email" name="email" required="required" placeholder="dupont.jean@gmail.com"/>
       <small></small>
   </p>
-
+  <a >
   <button type="submit"  id="confirm-command" name="confirm-command">Valider ma commande</button>
   <p id="formNoValid"></p>
 
@@ -283,7 +284,7 @@ const validPostalCode = function (inputPostalCode) {
 //------------------------Validation input email-------------------------
 const validEmail = function (inputEmail) {
   let emailRegExp = new RegExp(
-    "^[a-zA-Z0-9.-_]+[@{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$",
+    "^[a-zA-Z0-9._-]+[@{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$",
     "g"
   );
   let testRegExpEmail = emailRegExp.test(inputEmail.value);
@@ -312,7 +313,7 @@ function inputValid(eltNext) {
   small.textContent = "";
 }
 
-//////////////////////////////Save form//////////////////////////////
+//////////////////////////////Save form///////////////////////////////////////////////////////////////////
 function saveForm() {
   const dataStorageForm = localStorage.getItem("form");
   const storageForm = JSON.parse(dataStorageForm);
@@ -335,10 +336,10 @@ function sendFormInStorage() {
 
   eltForm.addEventListener("click", function (e) {
     e.preventDefault();
-
     const form = new Form();
-    console.log(form);
+
     if (
+      //vérifie les entrées
       validName(inputForm.lastName) &&
       validName(inputForm.firstName) &&
       validAddress(inputForm.address) &&
@@ -350,21 +351,41 @@ function sendFormInStorage() {
       localStorage.setItem("form", JSON.stringify(form));
 
       localStorage.getItem("form", form);
-     // sendForm()
-      
+
+      //--------------------------Requête POST----------------------------------------------------------
+
+      fetch("http://localhost:3000/api/cameras/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contact: {
+            firstName: form.firstName,
+            lastName: form.lastName,
+            address: form.address,
+            city: form.city,
+            email: form.email,
+          },
+          products: [articleSelected.id],
+        }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          localStorage.setItem("orderId", JSON.stringify(data));
+          window.location = "/html/order.html";
+        })
+        .catch((error) => console.log("erreur de type : ", error));
     } else {
       formNoValid.textContent = "Formulaire non valide";
     }
   });
 }
 
-////////////////////////soumette le formulaire////////////////////////////////
-/*function newContact() {
-  let contact = new Contact();
-  console.log(contact);
- 
-}
-*/
 ////////////////////Affichage panier dans HTML//////////////////////
 function addToBasket(cart) {
   if (cart != null) {
@@ -393,8 +414,6 @@ function addToBasket(cart) {
     sendFormIf();
     saveForm();
     sendFormInStorage();
-   
-
   } else {
     //si panier vide
     basketEmpty();
@@ -404,5 +423,3 @@ function addToBasket(cart) {
 //////////////////////////////appel fonction panier///////////////////////////////////////////////////////
 
 addToBasket(cart);
-
-///////////////////////////////////////////////////

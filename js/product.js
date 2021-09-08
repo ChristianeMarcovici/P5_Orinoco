@@ -24,6 +24,8 @@ function productPage(product) {
                       <button type="button" class="add-to-cart" data-id=${product.id}>Ajouter au panier</button>
                       </div>`;
 }
+//(.../100).toFixed(2)//affichage 2 chiffres après la virgule sans arrondir///////////
+
 ///////////////////////////CONTAINER OPTIQUE///////////////////////////////////////////////
 function lensesOptionContent(lense) {
   //container "option" pour les optiques//
@@ -45,52 +47,42 @@ function btnBasket(cameraSelected) {
 
     let camerasInCart = [];
     let: otherCamera = true;
-  
 
-    
     const basketCamera = new Basket(
       cameraSelected.id,
       cameraSelected.name,
       lenseSelected,
-      quantity = 1,
+      (quantity = 1),
       cameraSelected.price,
-      cameraSelected.subTotal = cameraSelected.price
-   
+      (cameraSelected.subTotal = cameraSelected.price)
     );
     console.log(basketCamera);
-  
 
-    if (localStorage.getItem("cart") === null) {//si panier vide
-  
-      camerasInCart.push(basketCamera);//Je  pousse la caméra dans le panier
-      localStorage.setItem("cart", JSON.stringify(camerasInCart));//et je stock en string(le localstorage n'accepte que du string)
-    
+    if (localStorage.getItem("cart") === null) {
+      //si panier vide
+
+      camerasInCart.push(basketCamera); //Je  pousse la caméra dans le panier
+      localStorage.setItem("cart", JSON.stringify(camerasInCart)); //et je stock en string(le localstorage n'accepte que du string)
     } else {
-      camerasInCart = JSON.parse(localStorage.getItem("cart"));//sinon je récupère les articles
-    
-      camerasInCart.forEach(function (cameraInCart) {// pour chaque article j'incremente la quantité si optique identique
-        
-          if (   lenseSelected ===  cameraInCart.lense){
-    
+      camerasInCart = JSON.parse(localStorage.getItem("cart")); //sinon je récupère les articles
+
+      camerasInCart.forEach(function (cameraInCart) {
+        // pour chaque article j'incremente la quantité si optique identique
+
+        if (lenseSelected === cameraInCart.lense) {
           cameraInCart.quantity++;
           cameraInCart.subTotal = cameraSelected.price * cameraInCart.quantity;
           //subTotal.push(cameraInCart.subTotal)
           otherCamera = false;
-          
-          }
-         
-          
-          
+        }
       });
-      if (otherCamera)//si le panier n'est pas vide et c'est un autre camera
+      if (otherCamera)
+        //si le panier n'est pas vide et c'est un autre camera
 
-      camerasInCart.push(basketCamera);
+        camerasInCart.push(basketCamera);
       localStorage.setItem("cart", JSON.stringify(camerasInCart));
-     
     }
   });
-
- 
 }
 //////////////////////////////BOUCLE cameraId/////////////////////////////////////
 async function cameraById(cameraId) {
@@ -104,19 +96,16 @@ async function cameraById(cameraId) {
     jsonCamera.lenses
   );
 
-
   productPage(product); //container html
 
   //*****************boucle pour récuperer les optiques************************//
   for (let lense of product.lenses) {
     lensesOptionContent(lense); //container html option  optiques
     console.log(lense);
-    
   }
 
   //****************************PANIER****************************************//
   btnBasket(product);
- 
 }
 
 ///////////////////////////////////////FETCH///////////////////////////////////////////
