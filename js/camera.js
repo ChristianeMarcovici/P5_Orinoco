@@ -7,6 +7,10 @@ class Camera {
     this.imageUrl = imageUrl;
     this.lenses = lenses;
   }
+
+  getFormatedPrice() {
+    return this.price / 100;
+  }
 }
 //Object.assign = lenses ; _id ; name ; price ; description ; imageUrl.
 
@@ -21,13 +25,3 @@ class Basket {
   }
 }
 
-class Form {
-  constructor() {
-    (this.lastName = document.querySelector("#lastName").value),
-      (this.firstName = document.querySelector("#firstName").value),
-      (this.address = document.querySelector("#address").value),
-      (this.city = document.querySelector("#city").value),
-      (this.postalCode = document.querySelector("#postalCode").value),
-      (this.email = document.querySelector("#email").value);
-  }
-}

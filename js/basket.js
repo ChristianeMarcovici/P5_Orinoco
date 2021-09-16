@@ -3,27 +3,28 @@ formStorage = JSON.parse(localStorage.getItem("form"));
 let articleSelected = []; //liste articles
 let totalPrice = [];
 console.log(articleSelected);
+let idProducts = []; //id du panier
 
 ///////////////////////////////CONTAINER PANIER////////////////////////////////////////////////////
 function basketContainer(articleSelected) {
-  let tableBody = document.querySelector("#cart-tbody"); //affichage dans HTML
+  //--------------Tableau-------------------------------//
+  let tableBody = document.querySelector("#cart-tbody");
   let trTable = document.createElement("tr");
   tableBody.appendChild(trTable);
   trTable.setAttribute("class", "basketLine");
-
-  let thName = document.createElement("th"); //name
+  //--------------Name--------------------------------//
+  let thName = document.createElement("th");
   thName.setAttribute("class", "basketName");
   thName.textContent = articleSelected.name;
   trTable.appendChild(thName);
-
-  let thLense = document.createElement("th"); //optique
+  //-------------Optique------------------------------//
+  let thLense = document.createElement("th");
   thLense.setAttribute("class", "basketOptical");
   thLense.textContent = articleSelected.lense;
   trTable.appendChild(thLense);
-
-  let thQty = document.createElement("th"); //quantité
+  //--------------Quantité---------------------------//
+  let thQty = document.createElement("th");
   thQty.setAttribute("class", "basketQty");
-
   trTable.appendChild(thQty);
   let selectQty = document.createElement("select");
   selectQty.setAttribute("class", "qty");
@@ -32,12 +33,13 @@ function basketContainer(articleSelected) {
     articleSelected.name + articleSelected.lense
   ); //réf id caméra par name et optique
   thQty.appendChild(selectQty);
-
+  //-------------Option quantité selectionné-------//
   let optCart = document.createElement("option");
   optCart.setAttribute("selected", "selected");
   optCart.setAttribute("value", articleSelected.quantity);
   optCart.textContent = articleSelected.quantity;
   selectQty.appendChild(optCart);
+  //----------------option autre quantité-------//
 
   let min = 1;
   let max = 5;
@@ -49,19 +51,19 @@ function basketContainer(articleSelected) {
     optQty.value = optQty.textContent = [i];
     selectQty.appendChild(optQty);
   }
-
-  let trash = document.createElement("button"); //corbeille
+  //----------------Corbeille----------------------------//
+  let trash = document.createElement("button");
   let icon = document.createElement("i");
   trash.appendChild(icon);
   trash.setAttribute("class", "trash");
   trash.setAttribute("data-id", articleSelected.name + articleSelected.lense);
   icon.setAttribute("class", "fas fa-trash-alt");
   trTable.appendChild(trash);
-
-  let thPrice = document.createElement("th"); //prix
+  //-----------------Prix------------------------------//
+  let thPrice = document.createElement("th");
   thPrice.setAttribute("class", "basketPrice");
-  thPrice.textContent = articleSelected.subTotal;
-  thPrice.setAttribute("value", articleSelected.price);
+  thPrice.textContent = `${articleSelected.subTotal},00€`;
+  thPrice.setAttribute("value", articleSelected.subTotal);
   thPrice.setAttribute("data-id", articleSelected.name + articleSelected.lense);
   trTable.appendChild(thPrice);
 }
@@ -80,8 +82,10 @@ function removeProduct(cart) {
         if (idInCart[i] === id) {
           // console.log(idInCart[i]);
           //console.log(id);
-          cart = cart.filter((item) => item.name + item.lense !== id); //retourne un nouveau tableau avec nom et optique différent
+          cart = cart.filter((item) => item.name + item.lense !== id);
+          //retourne un nouveau tableau avec nom et optique différent
           localStorage.setItem("cart", JSON.stringify(cart));
+
           //console.log(cart);
 
           table.removeChild(btn.parentElement); //supprime le container
@@ -92,7 +96,7 @@ function removeProduct(cart) {
   );
 }
 
-//////////////////////////quantite////////////////////////////////////////////////////
+//////////////////////////+/- Quantité////////////////////////////////////////////////////
 function changeQty(cart) {
   let eltPrice = document.querySelectorAll(".basketPrice");
   let eltQty = document.querySelectorAll(".qty");
@@ -127,19 +131,19 @@ function getTotalValue(cart) {
   for (let i = 0; i < cart.length; i++) {
     let priceCamera = cart[i].subTotal;
     totalPrice.push(priceCamera);
+    console.log("Liste Prix", priceCamera);
   }
   console.log("Liste Prix", totalPrice);
   const reducer = (accumulator, currentValue) => accumulator + currentValue; //reduce : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
   const calculPrice = totalPrice.reduce(reducer, 0); //reduit toutes les valeurs à une valeur
   console.log("Prix total:", calculPrice);
   const totalContain = document.querySelector("#total");
-  totalContain.textContent = calculPrice;
-
-  totalContain.textContent = calculPrice;
+  totalContain.textContent = `${calculPrice},00€`;
 
   if (calculPrice == 0) {
     basketEmpty();
   }
+
   localStorage.setItem("totalPrice", JSON.stringify(calculPrice));
 }
 ///////////////////////////////Fonction panier vide //////////////////////////
@@ -152,241 +156,16 @@ function basketEmpty() {
   const displayContain = document.querySelector("#basket");
   displayContain.style.display = "none"; //N'affiche pas le tableau
 }
-////////////////////////CONTAINER FORMULAIRE///////////////////////////////
-function formContainer() {
-  let eltForm = document.querySelector("#form-contact"); //affichage dans HTML
-  eltForm.innerHTML += `
-  <h2>Formulaire de commande</h2>
-  <form action="" method="post" id="form" >
-  <p>
-      <label for="lastName">Nom</label>
-      <input type="text" id="lastName" name="lastName" required="required" placeholder="Dupont"/>
-      <small ></small>
-  </p>
-  <p>
-      <label for="firstName">Prénom</label>
-      <input type="text" id="firstName" name="firstName" required="required" placeholder="Jean"/>
-      <small></small>
-  </p>
-  <p>
-      <label for="address">Adresse</label>
-      <textarea id="address" name="address" required="required" placeholder="1 avenue des Champs-Elysée"></textarea>
-      <small></small>
-  </p>
-  <p>
-      <label for="city">Ville</label>
-      <input type="text" id="city" name="city" required="required" placeholder="Paris"/>
-      <small></small>
-  </p>
-  <p>
-      <label for="postalCode">Code Postal</label>
-      <input type="text" id="postalCode" name="postalCode" required="required" placeholder="75008"/>
-      <small></small>
-  </p>
-  <p>
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required="required" placeholder="dupont.jean@gmail.com"/>
-      <small></small>
-  </p>
-  <a >
-  <button type="submit"  id="confirm-command" name="confirm-command">Valider ma commande</button>
-  <p id="formNoValid"></p>
 
-</form>
-  `;
-}
-
-/////////////////////////Condition envoie formulaire///////////////////
-function sendFormIf() {
-  let form = document.querySelector("#form");
-
-  form.lastName.addEventListener("change", function () {
-    validName(this);
-  });
-
-  form.firstName.addEventListener("change", function () {
-    validName(this);
-  });
-  form.address.addEventListener("change", function () {
-    validAddress(this);
-  });
-  form.city.addEventListener("change", function () {
-    validCity(this);
-  });
-  form.postalCode.addEventListener("change", function () {
-    validPostalCode(this);
-  });
-  form.email.addEventListener("change", function () {
-    validEmail(this);
-  });
-}
-//------------------------Validation input name--------------------
-const validName = function (inputName) {
-  let nameRegExp = new RegExp("^[a-zA-Z\\s-'éèêë]{3,20}$", "g");
-  let testRegExpName = nameRegExp.test(inputName.value); //renvoie true ou false
-  // console.log(inputName.value);
-
-  if (testRegExpName) {
-    inputValid(inputName);
-    return true;
-  } else {
-    caseEmpty("lastName", "firstName"); //vérifie champs vides
-    errorInput(inputName); //entrée non valide
-    console.log(errorInput(inputName));
-    return false;
-  }
-};
-//------------------------Validation input address-----------------------
-const validAddress = function (inputAddress) {
-  let addressRegExp = new RegExp(
-    "^([0-9]{1,4}[a-z]{0,5})\\s[\\w\\s-'éèê]{2,}$",
-    "g"
-  );
-  let testRegExpAddress = addressRegExp.test(inputAddress.value);
-
-  if (testRegExpAddress) {
-    inputValid(inputAddress);
-    return true;
-  } else {
-    caseEmpty("address");
-    errorInput(inputAddress);
-    return false;
-  }
-};
-//------------------------Validation input town--------------------------
-const validCity = function (inputCity) {
-  let cityRegExp = new RegExp("^[a-zA-Z\\s-'éèê]{1,}$", "g");
-  let testRegExpCity = cityRegExp.test(inputCity.value);
-
-  if (testRegExpCity) {
-    inputValid(inputCity);
-    return true;
-  } else {
-    caseEmpty("city");
-    errorInput(inputCity);
-    return false;
-  }
-};
-//------------------------Validation input postalCode--------------------
-const validPostalCode = function (inputPostalCode) {
-  let postalCodeRegExp = new RegExp("^[0-9]{5}$", "g");
-  let testRegExpPostalCode = postalCodeRegExp.test(inputPostalCode.value);
-
-  if (testRegExpPostalCode) {
-    inputValid(inputPostalCode);
-    return true;
-  } else {
-    caseEmpty("postalCode");
-    errorInput(inputPostalCode);
-    return false;
-  }
-};
-//------------------------Validation input email-------------------------
-const validEmail = function (inputEmail) {
-  let emailRegExp = new RegExp(
-    "^[a-zA-Z0-9._-]+[@{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$",
-    "g"
-  );
-  let testRegExpEmail = emailRegExp.test(inputEmail.value);
-
-  if (testRegExpEmail) {
-    inputValid(inputEmail);
-    return true;
-  } else {
-    caseEmpty("email");
-    errorInput(inputEmail);
-    return false;
-  }
-};
-//-----------------------champs vide----------------------------------
-function caseEmpty(inputId) {
-  document.querySelector(`#${inputId}`).textContent = "";
-}
-//-----------------------texte non valide-----------------------------
-function errorInput(nextElt) {
-  let small = nextElt.nextElementSibling;
-  small.textContent = "non valide";
-}
-//---------------------texte valide----------------------------------
-function inputValid(eltNext) {
-  let small = eltNext.nextElementSibling;
-  small.textContent = "";
-}
-
-//////////////////////////////Save form///////////////////////////////////////////////////////////////////
-function saveForm() {
-  const dataStorageForm = localStorage.getItem("form");
-  const storageForm = JSON.parse(dataStorageForm);
-  if (storageForm == null) {
-  } else {
-    document.querySelector("#lastName").value = storageForm.lastName;
-    document.querySelector("#firstName").value = storageForm.firstName;
-    document.querySelector("#address").value = storageForm.address;
-    document.querySelector("#city").value = storageForm.city;
-    document.querySelector("#postalCode").value = storageForm.postalCode;
-    document.querySelector("#email").value = storageForm.email;
+/////////////////////id panier pour API POST//////////////////////////////////
+function idProduct(cart) {
+  for (let i = 0; i < cart.length; i++) {
+    let id = cart[i].id;
+    idProducts.push(id);
+    // console.log(id)
   }
 }
-/////////////////////////////send form in localstorage//////////////////////////////////////////////////////
-function sendFormInStorage() {
-  let eltForm = document.querySelector("#confirm-command");
-  let formNoValid = document.querySelector("#formNoValid");
-
-  let inputForm = document.querySelector("#form");
-
-  eltForm.addEventListener("click", function (e) {
-    e.preventDefault();
-    const form = new Form();
-
-    if (
-      //vérifie les entrées
-      validName(inputForm.lastName) &&
-      validName(inputForm.firstName) &&
-      validAddress(inputForm.address) &&
-      validCity(inputForm.city) &&
-      validPostalCode(inputForm.postalCode) &&
-      validEmail(inputForm.email)
-    ) {
-      formNoValid.textContent = "";
-      localStorage.setItem("form", JSON.stringify(form));
-
-      localStorage.getItem("form", form);
-
-      //--------------------------Requête POST----------------------------------------------------------
-
-      fetch("http://localhost:3000/api/cameras/order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contact: {
-            firstName: form.firstName,
-            lastName: form.lastName,
-            address: form.address,
-            city: form.city,
-            email: form.email,
-          },
-          products: [articleSelected.id],
-        }),
-      })
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-        })
-        .then((data) => {
-          localStorage.setItem("orderId", JSON.stringify(data));
-          window.location = "/html/order.html";
-        })
-        .catch((error) => console.log("erreur de type : ", error));
-    } else {
-      formNoValid.textContent = "Formulaire non valide";
-    }
-  });
-}
-
-////////////////////Affichage panier dans HTML//////////////////////
+////////////////////Affichage panier dans HTML/////////////////////////////
 function addToBasket(cart) {
   if (cart != null) {
     articleSelected.push(cart);
@@ -410,7 +189,10 @@ function addToBasket(cart) {
 
     getTotalValue(cart);
 
+    idProduct(cart);
+
     formContainer();
+
     sendFormIf();
     saveForm();
     sendFormInStorage();

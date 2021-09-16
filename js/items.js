@@ -1,5 +1,5 @@
 ///////////////////CONTAINER CAMERA/////////////////////////////////////////
-async function showCameras(camera) {
+function showCameras(camera) {
   document.querySelector(".container").innerHTML += `<div class= "img-items">
                       <img src=${camera.imageUrl}>
                   <div class= "name-items"
@@ -14,9 +14,7 @@ async function showCameras(camera) {
 async function getCameras(cameras) {
   cameras = await getApiCamera();
   console.log(cameras);
-  let camera = new Camera(cameras);
- 
-  for (camera of cameras) {
+  for (let camera of cameras) {
     showCameras(camera); //affichage
   }
 }

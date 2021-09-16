@@ -9,8 +9,10 @@ function productPage(product) {
                       <div class="description">
                           <h3 class="name">${product.name}</h3>
                           <p class="ref">Référence : ${product.id}</p>
-                          <p class="text">Caractéristique : ${product.description}</p>
-                          <p class="price">Prix : ${product.price} €</p>
+                          <p class="text">Caractéristique : ${
+                            product.description
+                          }</p>
+                          <p class="price">Prix : ${product.getFormatedPrice()},00€</p>
                       </div>
                       <div class="choice-optical">
                       <form method="post" action="">
@@ -21,10 +23,11 @@ function productPage(product) {
                        </p>     
                       </form> 
                   
-                      <button type="button" class="add-to-cart" data-id=${product.id}>Ajouter au panier</button>
+                      <button type="button" class="add-to-cart" data-id=${
+                        product.id
+                      }>Ajouter au panier</button>
                       </div>`;
 }
-//(.../100).toFixed(2)//affichage 2 chiffres après la virgule sans arrondir///////////
 
 ///////////////////////////CONTAINER OPTIQUE///////////////////////////////////////////////
 function lensesOptionContent(lense) {
@@ -43,7 +46,7 @@ function btnBasket(cameraSelected) {
 
   btn.addEventListener("click", function () {
     const lenseSelected = document.querySelector("select").value;
-    console.log(lenseSelected);
+    //console.log(lenseSelected);
 
     let camerasInCart = [];
     let: otherCamera = true;
@@ -53,10 +56,10 @@ function btnBasket(cameraSelected) {
       cameraSelected.name,
       lenseSelected,
       (quantity = 1),
-      cameraSelected.price,
-      (cameraSelected.subTotal = cameraSelected.price)
+      cameraSelected.getFormatedPrice(),
+      (cameraSelected.subTotal = cameraSelected.getFormatedPrice())
     );
-    console.log(basketCamera);
+   // console.log(basketCamera);
 
     if (localStorage.getItem("cart") === null) {
       //si panier vide
@@ -71,7 +74,8 @@ function btnBasket(cameraSelected) {
 
         if (lenseSelected === cameraInCart.lense) {
           cameraInCart.quantity++;
-          cameraInCart.subTotal = cameraSelected.price * cameraInCart.quantity;
+          cameraInCart.subTotal =
+            cameraSelected.getFormatedPrice() * cameraInCart.quantity;
           //subTotal.push(cameraInCart.subTotal)
           otherCamera = false;
         }
@@ -82,26 +86,21 @@ function btnBasket(cameraSelected) {
         camerasInCart.push(basketCamera);
       localStorage.setItem("cart", JSON.stringify(camerasInCart));
     }
+    if ( confirm( "Votre article a bien été ajouté, \n Voir mon panier" ) ) {
+      window.location = "/html/basket.html";
+  }
   });
 }
 //////////////////////////////BOUCLE cameraId/////////////////////////////////////
 async function cameraById(cameraId) {
-  let jsonCamera = await getApiCameraById(cameraId);
-  let product = new Camera(
-    jsonCamera._id,
-    jsonCamera.name,
-    jsonCamera.price,
-    jsonCamera.description,
-    jsonCamera.imageUrl,
-    jsonCamera.lenses
-  );
+  let product = await getApiCameraById(cameraId);
 
   productPage(product); //container html
 
   //*****************boucle pour récuperer les optiques************************//
   for (let lense of product.lenses) {
     lensesOptionContent(lense); //container html option  optiques
-    console.log(lense);
+   // console.log(lense);
   }
 
   //****************************PANIER****************************************//
