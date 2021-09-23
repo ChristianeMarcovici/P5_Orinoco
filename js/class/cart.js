@@ -14,7 +14,7 @@ class Cart {
         for (let i = 0; i < elt.length; i++) {
             let idPrice = elt[i].dataset.id;
             if (idPrice === id) {
-              cartItem.subTotal = qty * cartItem.unitPrice;
+              cartItem.subTotal = (qty * cartItem.unitPrice).toFixed(2);
               // console.log( "prix total", cartItem.subTotal);
               cartItem.quantity = qty;
               elt[i].textContent = cartItem.subTotal;
@@ -41,16 +41,16 @@ class Cart {
     getTotalValue(item, elt) {
         // fonction to calculate the total value of the cart
         for (let i = 0; i < item.length; i++) {
-            let priceCamera = item[i].subTotal;
+            let priceCamera = item[i].subTotal * 100;
             totalPrice.push(priceCamera);
             console.log("Liste Prix", priceCamera);
           }
           console.log("Liste Prix", totalPrice);
           const reducer = (accumulator, currentValue) => accumulator + currentValue; //reduce : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-          const calculPrice = totalPrice.reduce(reducer, 0); //reduit toutes les valeurs à une valeur
+          const calculPrice = (totalPrice.reduce(reducer, 0)/100).toFixed(2); //reduit toutes les valeurs à une valeur
           console.log("Prix total:", calculPrice);
          
-         elt.textContent = `${calculPrice},00€`;
+         elt.textContent = `${calculPrice}€`;
         
           if (calculPrice == 0) {
             basketEmpty();

@@ -12,7 +12,7 @@ function productPage(product) {
                           <p class="text">Caractéristique : ${
                             product.description
                           }</p>
-                          <p class="price">Prix : ${product.getFormatedPrice()},00€</p>
+                          <p class="price">Prix : ${product.getFormatedPrice()}€</p>
                       </div>
                       <div class="choice-optical">
                       <form method="post" action="">
@@ -74,9 +74,11 @@ function btnBasket(cameraSelected) {
         if (lenseSelected === cameraInCart.lense) {
           cameraInCart.quantity++;
           cameraInCart.subTotal =
-            cameraSelected.getFormatedPrice() * cameraInCart.quantity;
+            (cameraSelected.getFormatedPrice() * cameraInCart.quantity).toFixed(2);
           //subTotal.push(cameraInCart.subTotal)
           otherCamera = false;
+         
+          
         }
       });
       if (otherCamera)

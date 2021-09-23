@@ -9,7 +9,7 @@ class Camera {
   }
 
   getFormatedPrice() {
-    return this.price / 100;
+    return (this.price / 100).toFixed(2);
   }
 }
 //Object.assign = lenses ; _id ; name ; price ; description ; imageUrl.

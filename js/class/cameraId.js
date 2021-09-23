@@ -7,4 +7,5 @@ class CameraId {
       this.unitPrice = unitPrice;
       this.subTotal = subTotal;
     }
+  
   }

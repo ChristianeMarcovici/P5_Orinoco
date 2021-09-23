@@ -19,7 +19,7 @@ if (orderStorage) {
   orderId.textContent = `${orderStorage.orderId}`;
 } else {
   let order = document.querySelector("#order");
-  order.innerHTML = "<h3>Vous n'avez aucune commande en cours</>";
+  order.innerHTML = "<h3>Votre commande est en cours...</>";
 }
 //---------------Vider le panier-------------------------//
 

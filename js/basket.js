@@ -64,7 +64,7 @@ function basketContainer(articleSelected) {
   //-----------------Prix------------------------------//
   let thPrice = document.createElement("th");
   thPrice.setAttribute("class", "basketPrice");
-  thPrice.textContent = `${articleSelected.subTotal},00€`;
+  thPrice.textContent = `${articleSelected.subTotal}€`;
   thPrice.setAttribute("value", articleSelected.subTotal);
   thPrice.setAttribute("data-id", articleSelected.name + articleSelected.lense);
   trTable.appendChild(thPrice);
