@@ -3,7 +3,7 @@ function formContainer() {
   let eltForm = document.querySelector("#form-contact"); //affichage dans HTML
   eltForm.innerHTML += `
     <h2>Formulaire de commande</h2>
-    <form action="" method="post" id="form" >
+    <form method="post" id="form" >
     <p>
         <label for="lastName">Nom</label>
         <input type="text" id="lastName" name="lastName" required="required" placeholder="Dupont"/>
@@ -34,7 +34,7 @@ function formContainer() {
         <input type="email" id="email" name="email" required="required" placeholder="dupont.jean@gmail.com"/>
         <small></small>
     </p>
-    <a >
+   
     <button type="submit"  id="confirm-command" name="confirm-command">Valider ma commande</button>
     <p id="formNoValid"></p>
   
@@ -53,7 +53,6 @@ const validName = function (inputName) {
   } else {
     caseEmpty("lastName", "firstName"); //vérifie champs vides
     errorInput(inputName); //entrée non valide
-    console.log(errorInput(inputName));
     return false;
   }
 };
@@ -175,7 +174,7 @@ function sendFormIf() {
 }
 
 /////////////////////////////send form in localstorage//////////////////////////////////////////////////////
-function sendFormInStorage(form) {
+function sendForm(form) {
   let eltForm = document.querySelector("#confirm-command");
   let formNoValid = document.querySelector("#formNoValid");
 

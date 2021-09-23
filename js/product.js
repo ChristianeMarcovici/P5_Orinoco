@@ -38,7 +38,6 @@ function lensesOptionContent(lense) {
   option.textContent = lense;
   select.appendChild(option);
 }
-////////////////////////////////VARIABLES POUR PANIER//////////////////////////////////////
 
 //////////////////////////////////////////PANIER////////////////////////////////////////////
 function btnBasket(cameraSelected) {
@@ -51,7 +50,7 @@ function btnBasket(cameraSelected) {
     let camerasInCart = [];
     let: otherCamera = true;
 
-    const basketCamera = new Basket(
+    const basketCamera = new CameraId(
       cameraSelected.id,
       cameraSelected.name,
       lenseSelected,

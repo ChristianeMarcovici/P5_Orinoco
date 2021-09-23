@@ -1,10 +1,12 @@
-cart = JSON.parse(localStorage.getItem("cart"));
+let cartClass = new Cart();
+let cart = cartClass.getItems();
+//cart = JSON.parse(localStorage.getItem("cart"));
 formStorage = JSON.parse(localStorage.getItem("form"));
 let articleSelected = []; //liste articles
 let totalPrice = [];
 console.log(articleSelected);
 let idProducts = []; //id du panier
-
+console.log(cart);
 ///////////////////////////////CONTAINER PANIER////////////////////////////////////////////////////
 function basketContainer(articleSelected) {
   //--------------Tableau-------------------------------//
@@ -75,23 +77,12 @@ function removeProduct(cart) {
 
   trash.forEach((btn) =>
     btn.addEventListener("click", (id) => {
-      let idInCart = cart.map((item) => item.name + item.lense); //ref id camera par nom et optique
       id = btn.dataset.id;
+      //supprime ligne et met à jour le localStorage
+      cartClass.removeItem(cart, id);
 
-      for (let i = 0; i < idInCart.length; i++) {
-        if (idInCart[i] === id) {
-          // console.log(idInCart[i]);
-          //console.log(id);
-          cart = cart.filter((item) => item.name + item.lense !== id);
-          //retourne un nouveau tableau avec nom et optique différent
-          localStorage.setItem("cart", JSON.stringify(cart));
-
-          //console.log(cart);
-
-          table.removeChild(btn.parentElement); //supprime le container
-          window.location.href = "basket.html"; //met à jour le panier
-        }
-      }
+      table.removeChild(btn.parentElement); //supprime le container
+      window.location.href = "basket.html"; //met à jour le panier
     })
   );
 }
@@ -104,23 +95,11 @@ function changeQty(cart) {
   eltQty.forEach((btnQty) =>
     btnQty.addEventListener("change", (id) => {
       id = btnQty.dataset.id;
-      // console.log(id)
-      let cartItem = cart.find((item) => item.name + item.lense === id);
-      //console.log(cartItem.subTotal)
       let qty = btnQty.value;
-      // console.log("quantite",qty)
+    
+      cartClass.addItem(cart, eltPrice, qty, id);
+      //change valeur sous-total si changement quantité
 
-      for (let i = 0; i < eltPrice.length; i++) {
-        let idPrice = eltPrice[i].dataset.id;
-        if (idPrice === id) {
-          cartItem.subTotal = qty * cartItem.unitPrice;
-          // console.log( "prix total", cartItem.subTotal);
-          cartItem.quantity = qty;
-          eltPrice[i].textContent = cartItem.subTotal;
-        }
-      }
-      localStorage.setItem("cart", JSON.stringify(cart));
-      // console.log(cart);
       window.location.href = "basket.html";
     })
   );
@@ -128,23 +107,8 @@ function changeQty(cart) {
 
 ///////////////////////Calcul///////////////////////////////
 function getTotalValue(cart) {
-  for (let i = 0; i < cart.length; i++) {
-    let priceCamera = cart[i].subTotal;
-    totalPrice.push(priceCamera);
-    console.log("Liste Prix", priceCamera);
-  }
-  console.log("Liste Prix", totalPrice);
-  const reducer = (accumulator, currentValue) => accumulator + currentValue; //reduce : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-  const calculPrice = totalPrice.reduce(reducer, 0); //reduit toutes les valeurs à une valeur
-  console.log("Prix total:", calculPrice);
   const totalContain = document.querySelector("#total");
-  totalContain.textContent = `${calculPrice},00€`;
-
-  if (calculPrice == 0) {
-    basketEmpty();
-  }
-
-  localStorage.setItem("totalPrice", JSON.stringify(calculPrice));
+  cartClass.getTotalValue(cart, totalContain);
 }
 ///////////////////////////////Fonction panier vide //////////////////////////
 function basketEmpty() {
@@ -155,6 +119,9 @@ function basketEmpty() {
   console.log("Mon panier : vide");
   const displayContain = document.querySelector("#basket");
   displayContain.style.display = "none"; //N'affiche pas le tableau
+  const footerBottom = document.querySelector("footer");
+  footerBottom.style.position = "absolute";
+  footerBottom.style.bottom = "0px";
 }
 
 /////////////////////id panier pour API POST//////////////////////////////////
@@ -172,7 +139,7 @@ function addToBasket(cart) {
     console.log("Caméra dans panier :", articleSelected);
 
     for (let cartList of cart) {
-      articleSelected = new Basket(
+      articleSelected = new CameraId(
         cartList.id,
         cartList.name,
         cartList.lense,
@@ -195,7 +162,7 @@ function addToBasket(cart) {
 
     sendFormIf();
     saveForm();
-    sendFormInStorage();
+    sendForm();
   } else {
     //si panier vide
     basketEmpty();

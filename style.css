@@ -50,6 +50,8 @@ li {
 }
 a {
   text-decoration: none;
+  color: #fff;
+  
 }
 /*////////////////////////////////HEADER////////////////////////////////////////*/
 nav {
@@ -257,7 +259,7 @@ tbody {
 }
 /*/////////////////////////////formulaire/////////////////////////////////*/
 #form-contact {
-  width: 80%;
+  width: 90%;
   margin: 50px auto;
   display: flex;
   flex-direction: column;
@@ -277,7 +279,8 @@ tbody {
 }
 #form-contact input,
 textarea {
-  width: 80%;
+  width: 60%;
+  margin: auto;
 }
 #form-contact label {
   width: 100px;
@@ -285,12 +288,17 @@ textarea {
   flex-flow: row nowrap;
 }
 #confirm-command {
-  width: 60%;
-  margin: auto;
+  width: 200px;
+  height: 50px;
+  border-radius: 15px;
+  margin: 40px auto;
   display: flex;
   justify-content: center;
-  border: 2px solid rgb(223, 173, 119);
+  align-items: center;
+  background-color: rgb(223, 173, 119);
+  border: 1px solid #fff;
 }
+
 small {
   display: flex;
   width: 100%;
@@ -311,7 +319,7 @@ small {
   justify-content: center;
   align-items: center;
   width: 90%;
-  margin: auto;
+  margin: 50px auto;
   color: silver;
 }
 #order h3 {
@@ -326,7 +334,10 @@ small {
 #orderId {
   color: rgb(223, 173, 119);
 }
-
+.footerBottom{
+  position: absolute;
+  bottom: 0px;
+}
 /*//////////////////////////MEDIA QUERIES/////////////////////////////*/
 @media (min-width: 768px) {
   .container {
