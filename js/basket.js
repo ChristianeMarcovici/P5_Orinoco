@@ -53,14 +53,7 @@ function basketContainer(articleSelected) {
     optQty.value = optQty.textContent = [i];
     selectQty.appendChild(optQty);
   }
-  //----------------Corbeille----------------------------//
-  let trash = document.createElement("button");
-  let icon = document.createElement("i");
-  trash.appendChild(icon);
-  trash.setAttribute("class", "trash");
-  trash.setAttribute("data-id", articleSelected.name + articleSelected.lense);
-  icon.setAttribute("class", "fas fa-trash-alt");
-  trTable.appendChild(trash);
+ 
   //-----------------Prix------------------------------//
   let thPrice = document.createElement("th");
   thPrice.setAttribute("class", "basketPrice");
@@ -68,6 +61,15 @@ function basketContainer(articleSelected) {
   thPrice.setAttribute("value", articleSelected.subTotal);
   thPrice.setAttribute("data-id", articleSelected.name + articleSelected.lense);
   trTable.appendChild(thPrice);
+
+   //----------------Corbeille----------------------------//
+   let trash = document.createElement("button");
+   let icon = document.createElement("i");
+   trash.appendChild(icon);
+   trash.setAttribute("class", "trash");
+   trash.setAttribute("data-id", articleSelected.name + articleSelected.lense);
+   icon.setAttribute("class", "fas fa-trash-alt");
+   trTable.appendChild(trash);
 }
 
 /////////////////////////////SUPPRIMER ARTICLE////////////////////////////
@@ -96,7 +98,7 @@ function changeQty(cart) {
     btnQty.addEventListener("change", (id) => {
       id = btnQty.dataset.id;
       let qty = btnQty.value;
-    
+
       cartClass.addItem(cart, eltPrice, qty, id);
       //change valeur sous-total si changement quantité
 
@@ -106,7 +108,7 @@ function changeQty(cart) {
 }
 
 ///////////////////////Calcul///////////////////////////////
-function getTotalValue(cart) {
+function getTotal(cart) {
   const totalContain = document.querySelector("#total");
   cartClass.getTotalValue(cart, totalContain);
 }
@@ -154,7 +156,7 @@ function addToBasket(cart) {
 
     removeProduct(cart);
 
-    getTotalValue(cart);
+    getTotal(cart);
 
     idProduct(cart);
 

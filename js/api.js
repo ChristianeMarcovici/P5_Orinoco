@@ -2,7 +2,7 @@
 async function getApiCamera(cameras) {
   let resp = await fetch("http://localhost:3000/api/cameras/");
   let response = await resp.json();
-  return response
+  return response;
 }
 
 //////////////////////////////////////////////SEARCH URL/////////////////////////////////////////////

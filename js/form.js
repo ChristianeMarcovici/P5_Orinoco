@@ -51,7 +51,7 @@ const validName = function (inputName) {
     inputValid(inputName);
     return true;
   } else {
-    caseEmpty("lastName", "firstName"); //vérifie champs vides
+    inputEmpty("lastName", "firstName"); //vérifie champs vides
     errorInput(inputName); //entrée non valide
     return false;
   }
@@ -68,7 +68,7 @@ const validAddress = function (inputAddress) {
     inputValid(inputAddress);
     return true;
   } else {
-    caseEmpty("address");
+    inputEmpty("address");
     errorInput(inputAddress);
     return false;
   }
@@ -82,7 +82,7 @@ const validCity = function (inputCity) {
     inputValid(inputCity);
     return true;
   } else {
-    caseEmpty("city");
+    inputEmpty("city");
     errorInput(inputCity);
     return false;
   }
@@ -96,7 +96,7 @@ const validPostalCode = function (inputPostalCode) {
     inputValid(inputPostalCode);
     return true;
   } else {
-    caseEmpty("postalCode");
+    inputEmpty("postalCode");
     errorInput(inputPostalCode);
     return false;
   }
@@ -113,13 +113,13 @@ const validEmail = function (inputEmail) {
     inputValid(inputEmail);
     return true;
   } else {
-    caseEmpty("email");
+    inputEmpty("email");
     errorInput(inputEmail);
     return false;
   }
 };
 //-----------------------champs vide----------------------------------
-function caseEmpty(inputId) {
+function inputEmpty(inputId) {
   document.querySelector(`#${inputId}`).textContent = "";
 }
 //-----------------------texte non valide-----------------------------

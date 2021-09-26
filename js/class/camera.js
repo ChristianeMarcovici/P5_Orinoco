@@ -13,6 +13,3 @@ class Camera {
   }
 }
 //Object.assign = lenses ; _id ; name ; price ; description ; imageUrl.
-
-
-

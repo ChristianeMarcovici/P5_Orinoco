@@ -1,24 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
 
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  color: #fff;
-  background-color: #000;
-  font-family: "Nanum Myeongjo", serif, Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: 700;
-}
-main{
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  color: #fff;
+  background-color: #000;
+  font-family: "Nanum Myeongjo", "Roboto", Georgia, 'Times New Roman', Times, serif;
+  font-weight: 400;
 }
-footer{
- align-self: baseline;
+
+footer {
+  width: 100%;
+  height: 50px;
+  margin-top: auto;
+ display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(223, 173, 119);
+  font-weight: 800;
  
 }
+
+footer li {
+  color: #000;
+}
+footer ul{
+  margin: 0;
+  padding: 0;
+}
+
 h1,
 h2 {
   font-size: 2em;
@@ -119,19 +134,8 @@ nav {
   background-color: rgb(236, 198, 157);
 }
 /*///////////////////////////END CONTAINER INDEX//////////////////////////////////*/
-/*////////////////////////////FOOTER INDEX///////////////////////////////////////*/
-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(223, 173, 119);
-  width: 100%;
- 
-}
-footer li {
-  color: #000;
-}
-/*////////////////////////////END FOOTER INDEX///////////////////////////////////////*/
+
+
 /*///////////////////////////////PRODUCT.HTML/CONTAINER PRODUCT///////////////////////////////////*/
 .description {
   width: 80%;
@@ -175,6 +179,7 @@ footer li {
 }
 .choice-optical {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 90%;
@@ -197,6 +202,7 @@ footer li {
   width: 100px;
   border-radius: 10px;
 }
+
 /*//////////////////////////////PANIER///////////////////////////*/
 #basket {
   width: 95%;
@@ -209,37 +215,40 @@ table {
   margin: auto;
 }
 table tr {
-  width: 100%;
-
+  width:  100%;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   align-items: baseline;
 }
 th {
   width: 100%;
   margin-top: 10px;
   font-size: 1.2em;
+ 
 }
-thead {
-  font-size: 1em;
+thead tr{
+  width: 100%;
+  height: 45px;
+  margin-bottom: 10px;
+  font-family: "Roboto";
+  background-color: rgb(223, 173, 119);
+  color: #000; 
 }
 tbody {
   width: 100%;
   height: 60%;
+  font-size: 0.9em;
+ 
 }
 #basket p {
   width: 100%;
   display: flex;
   justify-content: center;
-  font-size: 1.2em;
+  font-weight: 800;
+ 
 }
 
-#btnMoins,
-#btnPlus {
-  font-size: 10px;
-  font-weight: bold;
-  margin: 3px;
-}
 #contain-total {
   width: 50%;
   margin: 30px auto;
@@ -248,13 +257,14 @@ tbody {
 }
 #total {
   color: rgb(223, 173, 119);
+
 }
 
 .trash {
   width: 25px;
   height: 22px;
   font-size: 12px;
-  margin: 0px;
+  margin: 10px;
   padding: 0px;
 }
 /*/////////////////////////////formulaire/////////////////////////////////*/
@@ -334,10 +344,7 @@ small {
 #orderId {
   color: rgb(223, 173, 119);
 }
-.footerBottom{
-  position: absolute;
-  bottom: 0px;
-}
+
 /*//////////////////////////MEDIA QUERIES/////////////////////////////*/
 @media (min-width: 768px) {
   .container {
