@@ -1,12 +1,12 @@
+/////////////////Variables/////////////////////////////////////////////////////////////////////
 let cartClass = new Cart();
 let cart = cartClass.getItems();
-//cart = JSON.parse(localStorage.getItem("cart"));
 formStorage = JSON.parse(localStorage.getItem("form"));
+
 let articleSelected = []; //liste articles
 let totalPrice = [];
-console.log(articleSelected);
-let idProducts = []; //id du panier
-console.log(cart);
+let idProducts = []; //id du panier pour API POST
+
 ///////////////////////////////CONTAINER PANIER////////////////////////////////////////////////////
 function basketContainer(articleSelected) {
   //--------------Tableau-------------------------------//
@@ -53,7 +53,7 @@ function basketContainer(articleSelected) {
     optQty.value = optQty.textContent = [i];
     selectQty.appendChild(optQty);
   }
- 
+
   //-----------------Prix------------------------------//
   let thPrice = document.createElement("th");
   thPrice.setAttribute("class", "basketPrice");
@@ -62,14 +62,14 @@ function basketContainer(articleSelected) {
   thPrice.setAttribute("data-id", articleSelected.name + articleSelected.lense);
   trTable.appendChild(thPrice);
 
-   //----------------Corbeille----------------------------//
-   let trash = document.createElement("button");
-   let icon = document.createElement("i");
-   trash.appendChild(icon);
-   trash.setAttribute("class", "trash");
-   trash.setAttribute("data-id", articleSelected.name + articleSelected.lense);
-   icon.setAttribute("class", "fas fa-trash-alt");
-   trTable.appendChild(trash);
+  //----------------Corbeille----------------------------//
+  let trash = document.createElement("button");
+  let icon = document.createElement("i");
+  trash.appendChild(icon);
+  trash.setAttribute("class", "trash");
+  trash.setAttribute("data-id", articleSelected.name + articleSelected.lense);
+  icon.setAttribute("class", "fas fa-trash-alt");
+  trTable.appendChild(trash);
 }
 
 /////////////////////////////SUPPRIMER ARTICLE////////////////////////////
@@ -131,14 +131,13 @@ function idProduct(cart) {
   for (let i = 0; i < cart.length; i++) {
     let id = cart[i].id;
     idProducts.push(id);
-    // console.log(id)
+  
   }
 }
 ////////////////////Affichage panier dans HTML/////////////////////////////
 function addToBasket(cart) {
   if (cart != null) {
     articleSelected.push(cart);
-    console.log("Caméra dans panier :", articleSelected);
 
     for (let cartList of cart) {
       articleSelected = new CameraId(
@@ -157,7 +156,7 @@ function addToBasket(cart) {
     removeProduct(cart);
 
     getTotal(cart);
-
+    //------------------------post-----------------------------------------------//
     idProduct(cart);
 
     formContainer();

@@ -4,18 +4,21 @@ totalStorage = JSON.parse(localStorage.getItem("totalPrice"));
 orderStorage = JSON.parse(localStorage.getItem("orderId"));
 cart = JSON.parse(localStorage.getItem("cart"));
 
+//--------------1ère lettre en Majuscule-----------------//
+//charAt=>retourne le caractère à la position spécifié
+//slice=>modifie le contenu 
+
+function nameFirstLetterUppercase(item) {
+  item = item.charAt(0).toUpperCase() + item.slice(1);
+  return item;
+}
 //-----------------Récapitulatif commande-----------------//
 if (orderStorage) {
   let firstName = document.querySelector("#orderFirstName");
-  firstName.textContent = `${
-    formStorage.firstName.charAt(0).toUpperCase() +
-    formStorage.firstName.slice(1)
-  }`;
+  firstName.textContent = `${nameFirstLetterUppercase(formStorage.firstName)}`;
 
   let lastName = document.querySelector("#orderLastName");
-  lastName.textContent = `${
-    formStorage.lastName.charAt(0).toUpperCase() + formStorage.lastName.slice(1)
-  }`;
+  lastName.textContent = `${nameFirstLetterUppercase(formStorage.lastName)}`;
 
   let orderTotal = document.querySelector("#orderPrice");
   orderTotal.textContent = `${totalStorage} €`;
@@ -28,4 +31,4 @@ if (orderStorage) {
 }
 //---------------Vider le panier-------------------------//
 
-//localStorage.clear("cart");
+localStorage.clear("cart");

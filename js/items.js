@@ -12,13 +12,12 @@ function showCameras(camera) {
 
 ///////////////////////Boucle Cameras/////////////////////////////////////
 async function getCameras(cameras) {
-  cameras = await getApiCamera();
-  console.table(cameras);
+  cameras = await getApiCamera(); //API
+
   for (let camera of cameras) {
     showCameras(camera); //affichage
   }
 }
-////////////////////fetch/////////////////////////////////////////////////
-getApiCamera();
+
 //////////////////Affichage Caméras//////////////////////////////////////
 getCameras();

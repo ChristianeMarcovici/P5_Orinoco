@@ -14,7 +14,6 @@ class Cart {
       let idPrice = elt[i].dataset.id;
       if (idPrice === id) {
         cartItem.subTotal = (qty * cartItem.unitPrice).toFixed(2);
-        // console.log( "prix total", cartItem.subTotal);
         cartItem.quantity = qty;
         elt[i].textContent = cartItem.subTotal;
       }
@@ -40,13 +39,10 @@ class Cart {
     for (let i = 0; i < item.length; i++) {
       let priceCamera = item[i].subTotal * 100;
       totalPrice.push(priceCamera);
-      console.log("Liste Prix", priceCamera);
     }
-    console.log("Liste Prix", totalPrice);
-    const reducer = (accumulator, currentValue) => accumulator + currentValue; //reduce : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+    //reduce : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
     const calculPrice = (totalPrice.reduce(reducer, 0) / 100).toFixed(2); //reduit toutes les valeurs à une valeur
-    console.log("Prix total:", calculPrice);
-
     elt.textContent = `${calculPrice}€`;
 
     if (calculPrice == 0) {

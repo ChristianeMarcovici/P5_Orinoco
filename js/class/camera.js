@@ -12,4 +12,3 @@ class Camera {
     return (this.price / 100).toFixed(2);
   }
 }
-//Object.assign = lenses ; _id ; name ; price ; description ; imageUrl.
