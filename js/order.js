@@ -7,10 +7,15 @@ cart = JSON.parse(localStorage.getItem("cart"));
 //-----------------Récapitulatif commande-----------------//
 if (orderStorage) {
   let firstName = document.querySelector("#orderFirstName");
-  firstName.textContent = `${formStorage.firstName}`;
+  firstName.textContent = `${
+    formStorage.firstName.charAt(0).toUpperCase() +
+    formStorage.firstName.slice(1)
+  }`;
 
   let lastName = document.querySelector("#orderLastName");
-  lastName.textContent = `${formStorage.lastName}`;
+  lastName.textContent = `${
+    formStorage.lastName.charAt(0).toUpperCase() + formStorage.lastName.slice(1)
+  }`;
 
   let orderTotal = document.querySelector("#orderPrice");
   orderTotal.textContent = `${totalStorage} €`;
@@ -23,4 +28,4 @@ if (orderStorage) {
 }
 //---------------Vider le panier-------------------------//
 
-localStorage.clear("cart");
+//localStorage.clear("cart");
