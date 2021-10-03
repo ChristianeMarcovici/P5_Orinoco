@@ -7,4 +7,8 @@ class CameraId {
     this.unitPrice = unitPrice;
     this.subTotal = subTotal;
   }
+
+  getFormatedPrice() {
+    return (this.price / 100).toFixed(2);
+  }
 }

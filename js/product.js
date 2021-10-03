@@ -35,7 +35,7 @@ function lensesOptionContent(lense) {
   //container "option" pour les optiques//
   const select = document.querySelector("#optical");
   const option = document.createElement("option");
-  option.setAttribute("value", lense); //variable "lenses = json.Camera.lenses[i]"
+  option.setAttribute("value", lense); //lense = lense of product.lenses
   option.textContent = lense;
   select.appendChild(option);
 }
@@ -48,7 +48,7 @@ function btnBasket(cameraSelected) {
     const lenseSelected = document.querySelector("select").value;
 
     let camerasInCart = [];
-    let: otherCamera = true;
+    let otherCamera = true;
 
     const basketCamera = new CameraId(
       cameraSelected.id,
@@ -61,7 +61,7 @@ function btnBasket(cameraSelected) {
 
     if (localStorage.getItem("cart") === null) {
       //si panier vide
-
+      
       camerasInCart.push(basketCamera); //Je  push la caméra dans le panier
       localStorage.setItem("cart", JSON.stringify(camerasInCart)); //et je stock en string(le localstorage n'accepte que du string)
     } else {

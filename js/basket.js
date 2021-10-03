@@ -15,26 +15,26 @@ function basketContainer(articleSelected) {
   tableBody.appendChild(trTable);
   trTable.setAttribute("class", "basketLine");
   //--------------Name--------------------------------//
-  let thName = document.createElement("th");
-  thName.setAttribute("class", "basketName");
-  thName.textContent = articleSelected.name;
-  trTable.appendChild(thName);
+  let tdName = document.createElement("td");
+  tdName.setAttribute("class", "basketName");
+  tdName.textContent = articleSelected.name;
+  trTable.appendChild(tdName);
   //-------------Optique------------------------------//
-  let thLense = document.createElement("th");
-  thLense.setAttribute("class", "basketOptical");
-  thLense.textContent = articleSelected.lense;
-  trTable.appendChild(thLense);
+  let tdLense = document.createElement("td");
+  tdLense.setAttribute("class", "basketOptical");
+  tdLense.textContent = articleSelected.lense;
+  trTable.appendChild(tdLense);
   //--------------Quantité---------------------------//
-  let thQty = document.createElement("th");
-  thQty.setAttribute("class", "basketQty");
-  trTable.appendChild(thQty);
+  let tdQty = document.createElement("td");
+  tdQty.setAttribute("class", "basketQty");
+  trTable.appendChild(tdQty);
   let selectQty = document.createElement("select");
   selectQty.setAttribute("class", "qty");
   selectQty.setAttribute(
     "data-id",
     articleSelected.name + articleSelected.lense
   ); //réf id caméra par name et optique
-  thQty.appendChild(selectQty);
+  tdQty.appendChild(selectQty);
   //-------------Option quantité selectionné-------//
   let optCart = document.createElement("option");
   optCart.setAttribute("selected", "selected");
@@ -55,12 +55,12 @@ function basketContainer(articleSelected) {
   }
 
   //-----------------Prix------------------------------//
-  let thPrice = document.createElement("th");
-  thPrice.setAttribute("class", "basketPrice");
-  thPrice.textContent = `${articleSelected.subTotal}€`;
-  thPrice.setAttribute("value", articleSelected.subTotal);
-  thPrice.setAttribute("data-id", articleSelected.name + articleSelected.lense);
-  trTable.appendChild(thPrice);
+  let tdPrice = document.createElement("td");
+  tdPrice.setAttribute("class", "basketPrice");
+  tdPrice.textContent = `${articleSelected.subTotal}€`;
+  tdPrice.setAttribute("value", articleSelected.subTotal);
+  tdPrice.setAttribute("data-id", articleSelected.name + articleSelected.lense);
+  trTable.appendChild(tdPrice);
 
   //----------------Corbeille----------------------------//
   let trash = document.createElement("button");
