@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
 
 body {
   margin: 0;
@@ -9,8 +10,7 @@ body {
   flex-direction: column;
   color: #fff;
   background-color: #000;
-  font-family: "Nanum Myeongjo", "Roboto", Georgia, "Times New Roman", Times,
-    serif;
+  font-family: "Nanum Myeongjo", "Roboto", Georgia, 'Times New Roman', Times, serif;
   font-weight: 400;
 }
 
@@ -18,17 +18,18 @@ footer {
   width: 100%;
   height: 50px;
   margin-top: auto;
-  display: flex;
+ display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgb(223, 173, 119);
   font-weight: 800;
+ 
 }
 
 footer li {
   color: #000;
 }
-footer ul {
+footer ul{
   margin: 0;
   padding: 0;
 }
@@ -65,6 +66,7 @@ li {
 a {
   text-decoration: none;
   color: #fff;
+  
 }
 /*////////////////////////////////HEADER////////////////////////////////////////*/
 nav {
@@ -132,6 +134,7 @@ nav {
   background-color: rgb(236, 198, 157);
 }
 /*///////////////////////////END CONTAINER INDEX//////////////////////////////////*/
+
 
 /*///////////////////////////////PRODUCT.HTML/CONTAINER PRODUCT///////////////////////////////////*/
 .description {
@@ -211,42 +214,43 @@ table {
   width: 100%;
   margin: auto;
 }
-thead tr {
-  width: 100%;
-  height: 45px;
-  margin-bottom: 10px;
-  font-family: "Roboto";
-  background-color: rgb(223, 173, 119);
-  color: #000;
-}
 table tr {
-  width: 100%;
+  width:  100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: baseline;
 }
-
-th,
-td {
-  width: 25%;
+th {
+  width: 100%;
   margin-top: 10px;
-  font-size: 1.4em;
-  text-align: end;
+  font-size: 1em;
 }
-th{
+td {
+  width: 100%;
+  margin-top: 10px;
+  font-size: 1.2em;
   text-align: center;
 }
-
+thead tr{
+  width: 100%;
+  height: 45px;
+  margin-bottom: 10px;
+  font-family: "Roboto";
+  background-color: rgb(223, 173, 119);
+  color: #000; 
+}
 tbody {
   width: 100%;
   height: 60%;
   font-size: 0.9em;
+ 
 }
 #basket p {
   width: 100%;
   display: flex;
   justify-content: center;
+  font-size: 1.5em;
   font-weight: 800;
 }
 
@@ -257,14 +261,16 @@ tbody {
   color: rgb(223, 173, 119);
 }
 #total {
+
   color: rgb(223, 173, 119);
+
 }
 
 .trash {
   width: 25px;
   height: 22px;
   font-size: 12px;
-  margin: 20px;
+  margin: 10px;
   padding: 0px;
 }
 /*/////////////////////////////formulaire/////////////////////////////////*/
@@ -349,5 +355,10 @@ small {
 @media (min-width: 768px) {
   .container {
     flex-flow: row wrap;
+  }
+}
+@media (max-width:400px){
+  td{
+    font-size: 1em;
   }
 }
